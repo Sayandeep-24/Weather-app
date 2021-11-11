@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
 import axios from "axios";
 import WeatherDetails from "./WeatherDetails";
@@ -14,10 +14,13 @@ export default function WeatherForecast() {
 
   const [loc_url, setUrl] = useState(null);
 
-  axios.get(loc_search_url).then((response) => {
-    loc_id = response.data[0].woeid;
-    setUrl(proxyCORS + "https://www.metaweather.com/api/location/" + loc_id);
-  });
+  useEffect(()=> {
+    axios.get(loc_search_url).then((response) => {
+        loc_id = response.data[0].woeid;
+        setUrl(proxyCORS + "https://www.metaweather.com/api/location/" + loc_id);
+      });    
+  },[locationCtx.location]);
+
 
   return (
     <div>
