@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import DateConverter from "./DateConverter";
+import { LocationContext } from "../../Store/location-context";
+
 
 import clear from "../../images/Clear.png";
 import Hail from "../../images/Hail.png";
@@ -16,16 +19,17 @@ export default function WeatherDetails(props) {
   const [temp, setTemp] = useState(0);
   const [weatherResult, setweatherResult] = useState(null);
   const [currentWeather, setcurrentWeather] = useState(null);
-  const [loaded, setLoaded] = useState(false);
+  const [time, setTime] = useState();
+  const locationCtx = useContext(LocationContext);
+
 
   useEffect(() => {
-    setLoaded(false);
     axios.get(props.value).then((response) => {
       setcurrentWeather(
         response.data.consolidated_weather[0].weather_state_name
       );
       setTemp(Math.round(response.data.consolidated_weather[0].the_temp));
-
+      setTime(response.data.time);  
       if (currentWeather === "Clear") setweatherResult(clear);
       else if (currentWeather === "Hail") setweatherResult(Hail);
       else if (currentWeather === "Heavy Cloud") setweatherResult(HeavyCloud);
@@ -35,24 +39,16 @@ export default function WeatherDetails(props) {
       else if (currentWeather === "Showers") setweatherResult(Shower);
       else if (currentWeather === "Sleet") setweatherResult(Sleet);
       else if (currentWeather === "Snow") setweatherResult(Snow);
-      else if (currentWeather === "Thunderstorm")
-        setweatherResult(Thunderstorm);
+      else if (currentWeather === "Thunderstorm")setweatherResult(Thunderstorm);
     });
-  }, [props, currentWeather]);
+  }, [props,currentWeather]);
   return (
     <div>
-      <div>
-        {loaded ? null : <div>Please Wait...</div>}
-        <img
-          style={loaded ? {} : { display: "none" }}
-          src={weatherResult}
-          onLoad={() => setLoaded(true)}
-        />
-      </div>
-
-      <div style={loaded ? {} : { display: "none" }}>{temp}</div>
-
-      <div style={loaded ? {} : { display: "none" }}>{currentWeather}</div>
+      <div><img src={weatherResult}/></div>
+      <div>{temp} <span>&#8451;</span></div>
+      <div>{currentWeather}</div>
+      <div><DateConverter value={time}/></div>
+      <div>{locationCtx.location}</div>
     </div>
   );
 }

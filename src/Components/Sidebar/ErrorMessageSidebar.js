@@ -1,4 +1,5 @@
 export default function ErrorMessageSidebar()
 {
-    return <div>Oops, something went wrong</div>
+    return <div><h1>Oops! </h1>
+        <p>Something went wrong!</p></div>
 }
