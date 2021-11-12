@@ -16,5 +16,5 @@ export default function DateConverter(props)
       return(weekdays[week]+', '+dt+" "+months[month]);
     }
   
-    return <div> Today&emsp;.&emsp;{timeConverter(props.value)} </div>
+    return(<span>{timeConverter(props.value)} </span> )
 }
