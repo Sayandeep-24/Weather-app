@@ -44,7 +44,7 @@ export default function Card(props)
 
     return(
     <div> 
-        <DateConverter value={date} />
+       {props.id===1?<div>Tommorow</div> : <DateConverter value={date} />} 
         <div><img src={weatherResult} /></div>
         <div>{maxTemp}<span>&#8451;&emsp;</span>{minTemp}<span>&#8451;</span></div>
     </div>);

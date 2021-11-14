@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import LocationForm  from "./LocationForm";
 import WeatherForecast  from "./WeatherForecast";
 import ErrorMessageSidebar  from "./ErrorMessageSidebar";
+import DefaultLocation  from "./DefaultLocation";
 import { LocationContext } from "../../Store/location-context";
 
 
@@ -10,6 +11,7 @@ export default function Sidebar() {
     let currentLocation = locationCtx.location;
     return (
         <div className="sidebar">
+        <DefaultLocation />    
         <LocationForm />
         <div>{currentLocation.length<1 && <ErrorMessageSidebar />}</div>        
         <div>{currentLocation.length>0 && <WeatherForecast />}</div>        

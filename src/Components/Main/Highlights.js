@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../Store/location-context";
 import axios from "axios";
+import ProgressBar from "./Progress"
 
 export default function Highlights()
 {
@@ -8,13 +9,13 @@ export default function Highlights()
     const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
     let loc_search_url =proxyCORS + "https://www.metaweather.com/api/location/search/?query=" +locationCtx.location;
     let loc_url= null;
-    let num=1;
     const [currentWeather, setcurrentWeather] = useState(null); 
     const [windStatus, setwindStatus] = useState();
     const [windDirection, setwindDirection] = useState();
     const [Humidity, setHumidity] = useState();
     const [Visibility, setVisibility] = useState();
     const [AirPressure, setAirPressure] = useState();
+
 
 
     useEffect(()=> {
@@ -29,8 +30,6 @@ export default function Highlights()
             setHumidity(response.data.consolidated_weather[0].humidity);
             setVisibility(Math.round(response.data.consolidated_weather[0].visibility));
             setAirPressure(response.data.consolidated_weather[0].air_pressure);
-
-            console.log(response.data);
           });
     },[locationCtx.location, currentWeather]);
     
@@ -47,6 +46,12 @@ export default function Highlights()
         <div>
             <p>Humidity</p>
             {Humidity} %
+
+            <div>
+                <div>0 50 100</div>
+                <div><ProgressBar value={Humidity} max={100} /></div>
+                <div>%</div>
+            </div>
         </div>
         <div>
             <p>Visibility</p>
@@ -56,6 +61,8 @@ export default function Highlights()
             <p>Air Pressure</p>
             {AirPressure} mb
         </div>
+        
+
     </div>
     );
 }
