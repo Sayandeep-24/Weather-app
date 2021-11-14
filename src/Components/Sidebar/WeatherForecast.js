@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
+import { TemperatureContext } from "../../Store/temperature-context";
+
 import axios from "axios";
 import DateConverter from "./DateConverter";
 
@@ -16,11 +18,14 @@ import Thunderstorm from "../../images/Thunderstorm.png";
 
 export default function WeatherForecast() {
   const [temp, setTemp] = useState(0);
+  const [Ftemp, setFtemp] = useState(0);
   const [weatherResult, setweatherResult] = useState(null);
   const [currentWeather, setcurrentWeather] = useState(null);
   const [time, setTime] = useState();
   const [location, setLocation] = useState();
   const locationCtx = useContext(LocationContext);
+  const temperatureCtx = useContext(TemperatureContext);
+
 
   let loc_url = null;
   const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
@@ -28,6 +33,14 @@ export default function WeatherForecast() {
     proxyCORS +
     "https://www.metaweather.com/api/location/search/?query=" +
     locationCtx.location;
+
+  function cToF(celsius) 
+    {
+      let cTemp = celsius;
+      let cToFahr = ((cTemp * 9) / 5)+ 32;
+      return (Math.round(cToFahr));
+    }
+  
 
   useEffect(() => {
     axios
@@ -57,16 +70,17 @@ export default function WeatherForecast() {
         else if (currentWeather === "Snow") setweatherResult(Snow);
         else if (currentWeather === "Thunderstorm") setweatherResult(Thunderstorm);
       });
-  }, [locationCtx.location, currentWeather]);
+      setFtemp(cToF(temp));
+
+  }, [locationCtx.location, currentWeather, temperatureCtx]);
+
 
   return (
     <div>
       <div>
         <img src={weatherResult} />
       </div>
-      <div>
-        {temp} <span>&#8451;</span>
-      </div>
+      {temperatureCtx.isCelcius?<div> {temp} <span>&#8451;</span> </div>: <div>{Ftemp} <span>&#8457;</span></div> }
       <div>{currentWeather}</div>
       <div>
       Today &emsp;.&emsp;   <DateConverter value={time} />

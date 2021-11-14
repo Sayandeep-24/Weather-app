@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DateConverter from "../Sidebar/DateConverter";
+import { TemperatureContext } from "../../Store/temperature-context";
+
 
 import clear from "../../images/Clear.png";
 import Hail from "../../images/Hail.png";
@@ -19,6 +21,19 @@ export default function Card(props)
     const [date, setDate] = useState();
     const [weatherResult,setweatherResult] = useState();
     const [currentWeather, setcurrentWeather] = useState();
+    const temperatureCtx = useContext(TemperatureContext);
+    const [Fmin, setFmin] = useState(0);
+    const [Fmax, setFmax] = useState(0);
+
+
+
+    function cToF(celsius) 
+    {
+      let cTemp = celsius;
+      let cToFahr = ((cTemp * 9) / 5)+ 32;
+      return (Math.round(cToFahr));
+    }
+
 
     useEffect(()=> {
         if(props.data)
@@ -40,12 +55,14 @@ export default function Card(props)
             else if (currentWeather === "Thunderstorm") setweatherResult(Thunderstorm);
             
         }
-    },[props, currentWeather]);
+        setFmin(cToF(minTemp));
+        setFmax(cToF(maxTemp));
+    },[props, currentWeather, temperatureCtx ]);
 
     return(
     <div> 
-       {props.id===1?<div>Tommorow</div> : <DateConverter value={date} />} 
+        {props.id===1?<div>Tommorow</div> : <DateConverter value={date} />} 
         <div><img src={weatherResult} /></div>
-        <div>{maxTemp}<span>&#8451;&emsp;</span>{minTemp}<span>&#8451;</span></div>
+        {temperatureCtx.isCelcius?<div>{maxTemp}<span>&#8451;&emsp;</span>{minTemp}<span>&#8451;</span></div>: <div>{Fmax}<span>&#8457;&emsp;</span>{Fmin}<span>&#8457;</span></div> }
     </div>);
 }
