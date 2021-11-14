@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import LocationForm  from "./LocationForm";
 import WeatherForecast  from "./WeatherForecast";
 import ErrorMessageSidebar  from "./ErrorMessageSidebar";
 import DefaultLocation  from "./DefaultLocation";
 import { LocationContext } from "../../Store/location-context";
+import SearchButton  from "./SearchButton";
+
 
 
 export default function Sidebar() {
@@ -12,9 +13,12 @@ export default function Sidebar() {
     return (
         <div className="sidebar">
         <DefaultLocation />    
-        <LocationForm />
+        <SearchButton />
         <div>{currentLocation.length<1 && <ErrorMessageSidebar />}</div>        
         <div>{currentLocation.length>0 && <WeatherForecast />}</div>        
         </div>
     );
 }
+
+
+

@@ -13,6 +13,8 @@ export default function DefaultLocation()
     const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
     let loc_search_url =proxyCORS + "https://www.metaweather.com/api/location/search/?lattlong=";
 
+    const[count,setCount] = useState(0);
+
 
 
     const getLocation = () => 
@@ -34,11 +36,12 @@ export default function DefaultLocation()
       }
     }
 
-    const setLocation = () => {
+    const setLoc = () => {
         if(url){
             axios.get(url).then((response) => 
             {
               locationCtx.setLocation(response.data[0].title);
+              setCount(count+1);
             }).catch((err) =>{
                 console.log("Some probs");
             })      
@@ -49,7 +52,7 @@ export default function DefaultLocation()
 
     return(<span>
             {getLocation()}
-            {setLocation()}
-            <button onClick={setLocation}>Get Location</button>
+            {count===0?setLoc():<span />}
+            <button onClick={setLoc}>Get Location</button>
          </span> )
 }

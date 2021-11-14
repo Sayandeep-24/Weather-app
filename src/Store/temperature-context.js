@@ -12,10 +12,7 @@ export function TemperatureContextProvider(props)
 
     function changeUnit()
     {
-        if(currentUnit)
-            setCurrentUnit(false);
-        else
-            setCurrentUnit(true);    
+        setCurrentUnit(!currentUnit);
     }
 
     const context={

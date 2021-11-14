@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {useRef} from "react";
-
+import * as AiIcons from 'react-icons/ai';
+import SearchResults from "./SearchResults";
 import { LocationContext } from "../../Store/location-context";
 
 
-export default function LocationForm() {
+export default function LocationForm(props) {
   const locationCtx = useContext(LocationContext);
-
+  const [location, setLocation] = useState(null);
   const locationRef = useRef();
 
   let entered_location = null;
@@ -18,12 +19,15 @@ export default function LocationForm() {
   function submitHandler(event) {
     event.preventDefault();
     entered_location = locationRef.current.value;
-    modifyLocation();
+    setLocation(entered_location);
+    //modifyLocation();
   }
+
 
   return (
     <div>
       <section>
+        <span onClick={props.value}><AiIcons.AiOutlineClose /></span>
         <form onSubmit={submitHandler}>
           <label>
             Location
@@ -31,6 +35,7 @@ export default function LocationForm() {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        {location? <SearchResults changeBarState={props.value} location={location}/> : <span />}
       </section>
     </div>
   );
