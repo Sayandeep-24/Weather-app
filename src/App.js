@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="content">
       <LocationContextProvider>
-      <TemperatureContextProvider>
-        <Sidebar />
-        <Main />
-      </TemperatureContextProvider>
+        <TemperatureContextProvider>
+          <Sidebar />
+          <Main />
+        </TemperatureContextProvider>
       </LocationContextProvider>
     </div>
   );

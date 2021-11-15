@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
 import { TemperatureContext } from "../../Store/temperature-context";
+import BounceLoader from "react-spinners/BounceLoader";
 
 import axios from "axios";
 import DateConverter from "./DateConverter";
@@ -25,7 +26,7 @@ export default function WeatherForecast() {
   const [location, setLocation] = useState();
   const locationCtx = useContext(LocationContext);
   const temperatureCtx = useContext(TemperatureContext);
-
+  const [loading,setLoading] = useState(false);
 
   let loc_url = null;
   const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
@@ -43,6 +44,7 @@ export default function WeatherForecast() {
   
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(loc_search_url)
       .then((response) => {
@@ -58,7 +60,7 @@ export default function WeatherForecast() {
         );
         setTemp(Math.round(response.data.consolidated_weather[0].the_temp));
         setTime(response.data.time);
-        setLocation(response.data.title);
+        setLoading(false);
         if (currentWeather === "Clear") setweatherResult(clear);
         else if (currentWeather === "Hail") setweatherResult(Hail);
         else if (currentWeather === "Heavy Cloud") setweatherResult(HeavyCloud);
@@ -69,23 +71,29 @@ export default function WeatherForecast() {
         else if (currentWeather === "Sleet") setweatherResult(Sleet);
         else if (currentWeather === "Snow") setweatherResult(Snow);
         else if (currentWeather === "Thunderstorm") setweatherResult(Thunderstorm);
+        setLocation(response.data.title);
+
       });
       setFtemp(cToF(temp));
 
-  }, [locationCtx.location, currentWeather, temperatureCtx]);
+  }, [locationCtx.location, temperatureCtx]);
 
 
   return (
     <div>
+      {loading?<BounceLoader color={'#A9A9A9'} loading={loading}  size={20} />  :
       <div>
-        <img src={weatherResult} />
-      </div>
-      {temperatureCtx.isCelcius?<div> {temp} <span>&#8451;</span> </div>: <div>{Ftemp} <span>&#8457;</span></div> }
-      <div>{currentWeather}</div>
-      <div>
-      Today &emsp;.&emsp;   <DateConverter value={time} />
-      </div>
-      <div>{location}</div>
+        <div>
+          <img src={weatherResult} />
+        </div>
+        {temperatureCtx.isCelcius?<div> {temp} <span>&#8451;</span> </div>: <div>{Ftemp} <span>&#8457;</span></div> }
+        <div>{currentWeather}</div>
+        <div>
+        Today &emsp;.&emsp;   <DateConverter value={time} />
+        </div>
+        <div>{location}</div>
+      </div>}
+      
     </div>
   );
 }

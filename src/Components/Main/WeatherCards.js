@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
 import axios from "axios";
 import Card from "./Card";
+import PulseLoader from "react-spinners/PulseLoader";
+import UnitChange  from "./UnitChange";
+
 
 
 export default function WeatherCards()
@@ -12,26 +15,36 @@ export default function WeatherCards()
     let loc_url= null;
     let num=1;
     const [currentWeather, setcurrentWeather] = useState(null); 
-    
+    const [loading, setLoading] = useState(false);
     useEffect(()=> {
+      setLoading(true);
       axios.get(loc_search_url).then((response) => {
         loc_url=proxyCORS + "https://www.metaweather.com/api/location/" + response.data[0].woeid;
         return axios.get(loc_url);
         })
         .then((response) => {
             setcurrentWeather(response.data);    
+            setLoading(false);
           });
-    },[locationCtx.location, currentWeather]);
+    },[locationCtx.location]);
     
     return( 
     <div>
-        <Card id={num} data={currentWeather}/>
-        <Card id={num+1} data={currentWeather}/>
-        <Card id={num+2} data={currentWeather}/>
-        <Card id={num+3} data={currentWeather}/>
-        <Card id={num+4} data={currentWeather}/>
+        {
+        loading? <PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /> :      
+        <div>
+          <UnitChange />
+          <Card id={num} data={currentWeather}/>
+          <Card id={num+1} data={currentWeather}/>
+          <Card id={num+2} data={currentWeather}/>
+          <Card id={num+3} data={currentWeather}/>
+          <Card id={num+4} data={currentWeather}/>
+       </div>
+      }
+      
     </div>)
 }
 
 
   
+/*  */ 

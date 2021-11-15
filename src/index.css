@@ -26,3 +26,37 @@ body
   height: 8px;
   position: relative;
 }
+progress {
+  background: crimson;
+  height: 8px;
+  width : 200px;
+}
+
+progress {
+  color: lightblue;
+  
+}
+
+progress::-webkit-progress-value {
+  background: lightblue;
+  border-radius: 10px;
+
+}
+
+progress::-moz-progress-bar {
+  background: lightcolor;
+  border-radius: 10px;
+
+}
+
+progress::-webkit-progress-value {
+  background: yellow;
+  border-radius: 10px;
+
+}
+
+progress::-webkit-progress-bar {
+  background: #DCDCDC		;
+  border-radius: 10px;
+
+}

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import WeatherCards  from "./WeatherCards";
 import Highlights  from "./Highlights";
-import UnitChange  from "./UnitChange";
 import ErrorMessageMain  from "./ErrorMessageMain";
 import { LocationContext } from "../../Store/location-context";
 
@@ -13,7 +12,6 @@ export default function Main()
     return (
     <div className='main'>
         <div>{currentLocation.length<1 && <ErrorMessageMain />}</div>
-        <div>{currentLocation.length>0 && <UnitChange />}</div>        
         <div>{currentLocation.length>0 && <WeatherCards />}</div>        
         <div>{currentLocation.length>0 && <Highlights />}</div>        
     </div>);

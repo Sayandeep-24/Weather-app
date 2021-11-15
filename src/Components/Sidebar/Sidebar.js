@@ -12,8 +12,8 @@ export default function Sidebar() {
     let currentLocation = locationCtx.location;
     return (
         <div className="sidebar">
-        <DefaultLocation />    
         <SearchButton />
+        <DefaultLocation />    
         <div>{currentLocation.length<1 && <ErrorMessageSidebar />}</div>        
         <div>{currentLocation.length>0 && <WeatherForecast />}</div>        
         </div>
