@@ -15,4 +15,18 @@
     transition: 350ms;
   }
   
-  
+  .Search-button
+{
+   display:inline-block;
+   padding :12px 18px;
+   border :0.1em solid #6e707a;
+   margin:0 0.3em 0.3em 0;
+   box-sizing: border-box;
+   text-decoration:none;
+   font-weight:300;
+   color : #e7e7eb; 
+   background-color: #6e707a;
+   text-align:center;
+   font-size: 1em;
+
+}

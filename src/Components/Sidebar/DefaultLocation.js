@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { LocationContext } from "../../Store/location-context";
+import { BiCurrentLocation } from 'react-icons/bi';
 
 
 export default function DefaultLocation()
@@ -53,6 +54,7 @@ export default function DefaultLocation()
     return(<span>
             {getLocation()}
             {count===0?setLoc():<span />}
-            <button onClick={setLoc}>Get Location</button>
+            <button onClick={setLoc} className='location-button'><BiCurrentLocation className='location-logo'/></button>
          </span> )
 }
+

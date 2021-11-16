@@ -10,7 +10,7 @@ function SearchButton() {
 
     return (
         <div>
-            <button onClick={showSlidebar}>Search for places</button>
+            <button onClick={showSlidebar} className='Search-button'>Search for places</button>
             <nav className={slidebar ? 'slide-menu active' : 'slide-menu'}>
                 <LocationForm value={showSlidebar}/>
             </nav>
