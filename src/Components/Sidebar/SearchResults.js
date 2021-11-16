@@ -16,17 +16,24 @@ function SearchResults(props) {
       axios
         .get(url)
         .then((response) => {
-          setList((prevList) => {
-            return prevList.concat([
-              {
-                key: response.data[0].woeid,
-                place: response.data[0].title,
-              },
-            ]);
-          });
+          if(response.data.length>0)
+          {
+            setList((prevList) => {
+                return prevList.concat([
+                  {
+                    key: response.data[0].woeid,
+                    place: response.data[0].title,
+                  },
+                ]);
+              });
+          }
+          else
+          {
+            props.changeLocation(null);
+          }
         })
         .catch((err) => {
-          console.log("Some probs");
+          console.log("Error in API call : ", err);
         });
     }
   }, [props.location]);

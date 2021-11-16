@@ -21,12 +21,13 @@ export default function WeatherForecast() {
   const [temp, setTemp] = useState(0);
   const [Ftemp, setFtemp] = useState(0);
   const [weatherResult, setweatherResult] = useState(null);
-  const [currentWeather, setcurrentWeather] = useState(null);
+  const [Weather, setWeather] = useState(null);
   const [time, setTime] = useState();
   const [location, setLocation] = useState();
   const locationCtx = useContext(LocationContext);
   const temperatureCtx = useContext(TemperatureContext);
   const [loading,setLoading] = useState(false);
+  let currentWeather=null;
 
   let loc_url = null;
   const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
@@ -55,12 +56,12 @@ export default function WeatherForecast() {
         return axios.get(loc_url);
       })
       .then((response) => {
-        setcurrentWeather(
-          response.data.consolidated_weather[0].weather_state_name
-        );
+        setWeather(response.data.consolidated_weather[0].weather_state_name);
+        currentWeather = response.data.consolidated_weather[0].weather_state_name;
         setTemp(Math.round(response.data.consolidated_weather[0].the_temp));
         setTime(response.data.time);
         setLoading(false);
+        setLocation(response.data.title);
         if (currentWeather === "Clear") setweatherResult(clear);
         else if (currentWeather === "Hail") setweatherResult(Hail);
         else if (currentWeather === "Heavy Cloud") setweatherResult(HeavyCloud);
@@ -71,12 +72,10 @@ export default function WeatherForecast() {
         else if (currentWeather === "Sleet") setweatherResult(Sleet);
         else if (currentWeather === "Snow") setweatherResult(Snow);
         else if (currentWeather === "Thunderstorm") setweatherResult(Thunderstorm);
-        setLocation(response.data.title);
-
       });
       setFtemp(cToF(temp));
 
-  }, [locationCtx.location, temperatureCtx]);
+  }, [locationCtx.location]);
 
 
   return (
@@ -87,7 +86,7 @@ export default function WeatherForecast() {
           <img src={weatherResult} />
         </div>
         {temperatureCtx.isCelcius?<div> {temp} <span>&#8451;</span> </div>: <div>{Ftemp} <span>&#8457;</span></div> }
-        <div>{currentWeather}</div>
+        <div>{Weather}</div>
         <div>
         Today &emsp;.&emsp;   <DateConverter value={time} />
         </div>

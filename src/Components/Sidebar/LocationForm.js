@@ -12,16 +12,17 @@ export default function LocationForm(props) {
 
   let entered_location = null;
 
-  function modifyLocation() {
-    locationCtx.setLocation(entered_location);
+  function changeLocation(loc)
+  {
+    setLocation(loc);
   }
 
   function submitHandler(event) {
     event.preventDefault();
     entered_location = locationRef.current.value;
     locationRef.current.value='';
-    setLocation(entered_location);
-  }
+    changeLocation(entered_location);
+    }
 
 
   return (
@@ -35,7 +36,7 @@ export default function LocationForm(props) {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        {location? <SearchResults changeBarState={props.value} location={location}/> : <span>No results</span>}
+        {location? <SearchResults changeBarState={props.value} location={location} changeLocation={changeLocation}/> : <span>No results</span>}
       </section>
     </div>
   );

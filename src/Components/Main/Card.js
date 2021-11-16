@@ -20,11 +20,10 @@ export default function Card(props)
     const [minTemp, setminTemp] = useState();
     const [date, setDate] = useState();
     const [weatherResult,setweatherResult] = useState();
-    const [currentWeather, setcurrentWeather] = useState();
     const temperatureCtx = useContext(TemperatureContext);
     const [Fmin, setFmin] = useState(0);
     const [Fmax, setFmax] = useState(0);
-
+    let currentWeather = 0;
 
 
     function cToF(celsius) 
@@ -41,7 +40,7 @@ export default function Card(props)
             setDate(props.data.consolidated_weather[props.id].applicable_date);
             setmaxTemp(Math.round(props.data.consolidated_weather[props.id].max_temp));
             setminTemp(Math.round(props.data.consolidated_weather[props.id].min_temp));
-            setcurrentWeather(props.data.consolidated_weather[props.id].weather_state_name);
+            currentWeather = props.data.consolidated_weather[props.id].weather_state_name;
     
             if (currentWeather === "Clear") setweatherResult(clear);
             else if (currentWeather === "Hail") setweatherResult(Hail);
@@ -57,7 +56,7 @@ export default function Card(props)
         }
         setFmin(cToF(minTemp));
         setFmax(cToF(maxTemp));
-    },[props, currentWeather, temperatureCtx ]);
+    },[props, temperatureCtx ]);
 
     return(
     <div> 

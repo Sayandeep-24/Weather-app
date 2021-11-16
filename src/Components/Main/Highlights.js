@@ -13,7 +13,7 @@ export default function Highlights() {
   const [currentWeather, setcurrentWeather] = useState(null);
   const [windStatus, setwindStatus] = useState();
   const [windDirection, setwindDirection] = useState();
-  const [Humidity, setHumidity] = useState();
+  const [Humidity, setHumidity] = useState(0);
   const [Visibility, setVisibility] = useState();
   const [AirPressure, setAirPressure] = useState();
 
