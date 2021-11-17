@@ -44,11 +44,11 @@ function SearchResults(props) {
   }
 
   return (
-    <div>
+    <div className='search-results-box'>
       <ul>
         {List.map((loc) => {
           return (
-            <li key={loc.key} onClick={() => selectLocationHandler(loc.place)}>
+            <li className='search-results-locations' key={loc.key} onClick={() => selectLocationHandler(loc.place)}>
               {loc.place}
             </li>
           );

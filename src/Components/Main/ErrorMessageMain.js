@@ -1,3 +1,5 @@
+import  './ErrorMessageMain.css';
+
 export default function ErrorMessageMain()
 {
     return <div><h1>Location Not Found</h1>

@@ -3,6 +3,7 @@ import {useRef} from "react";
 import * as AiIcons from 'react-icons/ai';
 import SearchResults from "./SearchResults";
 import { LocationContext } from "../../Store/location-context";
+import {AiOutlineSearch} from "react-icons/ai";
 
 
 export default function LocationForm(props) {
@@ -26,18 +27,22 @@ export default function LocationForm(props) {
 
 
   return (
-    <div>
-      <section>
-        <span onClick={props.value}><AiIcons.AiOutlineClose /></span>
-        <form onSubmit={submitHandler}>
-          <label>
-            Location
-            <input type="text" name="location" ref={locationRef} />
+    <div className='side-menu'>
+      <section className='search-results'>
+        <span onClick={props.value} className='closing-button'><AiIcons.AiOutlineClose /></span>
+        <form onSubmit={submitHandler} className='search-form'>
+          <div className='search-bar'>
+          <label className='input-form'>
+            <AiOutlineSearch className='search-icon' />
+            <input type="text" name="location" ref={locationRef} placeholder="search location" className='search-input'/>
           </label>
-          <input type="submit" value="Submit" />
+          </div>
+          <div ><input type="submit" value="Search" className='form-search-button'/></div>
         </form>
         {location? <SearchResults changeBarState={props.value} location={location} changeLocation={changeLocation}/> : <span>No results</span>}
       </section>
     </div>
   );
 }
+
+
