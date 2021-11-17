@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
 import { TemperatureContext } from "../../Store/temperature-context";
 import BounceLoader from "react-spinners/BounceLoader";
+import { MdLocationOn } from "react-icons/md";
+
 
 import axios from "axios";
 import DateConverter from "./DateConverter";
@@ -82,15 +84,13 @@ export default function WeatherForecast() {
     <div>
       {loading?<BounceLoader color={'#A9A9A9'} loading={loading}  size={20} />  :
       <div>
-        <div>
+        <div className='sidebar-weather'>
           <img src={weatherResult} />
         </div>
-        {temperatureCtx.isCelcius?<div> {temp} <span>&#8451;</span> </div>: <div>{Ftemp} <span>&#8457;</span></div> }
-        <div>{Weather}</div>
-        <div>
-        Today &emsp;.&emsp;   <DateConverter value={time} />
-        </div>
-        <div>{location}</div>
+        {temperatureCtx.isCelcius?<div className='sidebar-temperature-block'><span className='sidebar-temperature'> {temp} </span><span className='sidebar-degree'>&#8451;</span> </div>: <div className='sidebar-temperature-block'><span className='sidebar-temperature'>{Ftemp}</span> <span className='sidebar-degree'>&#8457;</span></div> }
+        <div className='sidebar-weather-forecast'><h3 className='weather'>{Weather}</h3></div>
+        <div className='sidebar-date'>Today &emsp;<h3 className='dot'>•</h3> &emsp;  <DateConverter value={time} /></div>
+        <div className='sidebar-location'><MdLocationOn className='pin' />{location}</div>
       </div>}
       
     </div>
