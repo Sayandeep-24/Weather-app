@@ -34,11 +34,14 @@ export default function WeatherCards()
         loading?<div className='main-loading'><PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /></div>  :      
         <div>
           <UnitChange />
-          <Card id={num} data={currentWeather}/>
-          <Card id={num+1} data={currentWeather}/>
-          <Card id={num+2} data={currentWeather}/>
-          <Card id={num+3} data={currentWeather}/>
-          <Card id={num+4} data={currentWeather}/>
+          <div className='weather-forecast'>
+            <Card id={num} data={currentWeather} />
+            <Card id={num+1} data={currentWeather} />
+            <Card id={num+2} data={currentWeather}/>
+            <Card id={num+3} data={currentWeather}/>
+            <Card id={num+4} data={currentWeather}/>
+          </div>
+
        </div>
       }
       

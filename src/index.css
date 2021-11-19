@@ -373,8 +373,9 @@ progress::-webkit-progress-bar {
   margin-bottom: 40px;
   padding: 0 14px;
 }
-.cel-btn, .fah-btn{
-  font-family: 'Noto Sans JP','sans-serif';
+.cel-btn,
+.fah-btn {
+  font-family: "Noto Sans JP", "sans-serif";
   min-width: 40px;
   min-height: 40px;
   border-radius: 100%;
@@ -384,11 +385,10 @@ progress::-webkit-progress-bar {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border : none;
+  border: none;
 }
-.active
-{
-  font-family: 'Noto Sans JP','sans-serif';
+.active {
+  font-family: "Noto Sans JP", "sans-serif";
   min-width: 40px;
   min-height: 40px;
   border-radius: 100%;
@@ -398,6 +398,94 @@ progress::-webkit-progress-bar {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border : none;
+  border: none;
 }
 
+.weather-forecast {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.weather-card-wrap {
+  flex: 0 0 20%;
+  max-width: 20%;
+  position: relative;
+  width: 100%;
+}
+
+.weather-card {
+  min-height: 205px;
+  margin: 14px 14px;
+  padding: 18px 22px;
+  background: #1e213a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-forecast-img {
+  width: 60%;
+}
+.card-img {
+  max-width: 100%;
+}
+.forecast-maxmin {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.main-box {
+  margin: 40px;
+}
+h4 {
+  margin: 40px 14px 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.weather-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.highlights-wrap {
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  width: 100%;
+}
+.highlights {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px;
+  background: #1e213a;
+  color: #e7e7eb;
+  padding: 24px 50px;
+}
+.highlight-value {
+  font-size: 64px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  text-align: center;
+}
+.highlight-unit
+{
+  font-size: 36px;
+  font-weight: 500;
+}
+.legend
+{
+  display : flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.legend p, .legend-perc p{
+  margin : 0;
+}
+.legend-perc
+{
+  display : flex;
+  justify-content: end;
+  flex-direction: row;
+}

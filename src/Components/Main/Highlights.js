@@ -49,33 +49,49 @@ export default function Highlights() {
 
   return (
     <div>
-        {loading?<span /> : 
-        
-      <div>
-        <h2>Today's Highlights </h2>
+      {loading ? (
+        <span />
+      ) : (
         <div>
-          <p>Wind Status</p>
-          <p> {windStatus} mph</p>
-          <p>{windDirection}</p>
-        </div>
-        <div>
-          <p>Humidity</p>
-          {Humidity} %
-          <div>
-            <div>0 50 100</div>
-            <progress value={Math.round(Humidity)} max={100}></progress>
-            <div>%</div>
+          <h4>Today's Highlights </h4>
+          <div className="weather-highlights">
+            <div className="highlights-wrap">
+              {" "}
+              <div className="highlights">
+                <p>Wind Status</p>
+                <p className='highlight-value'> {windStatus} <span className='highlight-unit'>mph</span></p>
+                <p>{windDirection}</p>
+              </div>
+            </div>
+            <div className="highlights-wrap">
+              {" "}
+              <div className="highlights">
+                <p>Humidity</p>
+               <p className='highlight-value'>{Humidity} <span className='highlight-unit'>%</span></p> 
+                <div>
+                  <div className='legend'><p>0</p> <p>50</p><p>100</p></div>
+                  <progress value={Math.round(Humidity)} max={100}></progress>
+                  <div className='legend-perc'><p>%</p></div>
+                </div>
+              </div>
+            </div>
+            <div className="highlights-wrap">
+              {" "}
+              <div className="highlights">
+                <p>Visibility</p>
+               <p className='highlight-value'>{Visibility} <span className='highlight-unit'>miles</span></p> 
+              </div>
+            </div>
+            <div className="highlights-wrap">
+              {" "}
+              <div className="highlights">
+                <p>Air Pressure</p>
+                <p className='highlight-value'>{AirPressure} <span className='highlight-unit'>mb</span></p>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <p>Visibility</p>
-          {Visibility} miles
-        </div>
-        <div>
-          <p>Air Pressure</p>
-          {AirPressure} mb
-        </div>
-      </div>}
+      )}
     </div>
   );
 }
