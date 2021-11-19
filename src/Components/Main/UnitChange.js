@@ -27,9 +27,9 @@ export default function UnitChange()
 
     return( 
     <div className='cel-fah'>
-        <button onClick={() => changeUnitC(temperatureCtx.isCelcius)} className ={selectedBtn?'active':'cel-btn'} >&#8451;</button>
+        <button onClick={() => changeUnitC(temperatureCtx.isCelcius)} className ={selectedBtn?'deg-active':'cel-btn'} >&#8451;</button>
          &emsp;
-        <button onClick={() => changeUnitF(temperatureCtx.isCelcius)} className ={selectedBtn?'fah-btn':'active'} >&#8457;</button>
+        <button onClick={() => changeUnitF(temperatureCtx.isCelcius)} className ={selectedBtn?'fah-btn':'deg-active'} >&#8457;</button>
     </div>)
 }
 

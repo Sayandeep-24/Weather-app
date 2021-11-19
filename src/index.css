@@ -387,7 +387,7 @@ progress::-webkit-progress-bar {
   cursor: pointer;
   border: none;
 }
-.active {
+.deg-active {
   font-family: "Noto Sans JP", "sans-serif";
   min-width: 40px;
   min-height: 40px;
