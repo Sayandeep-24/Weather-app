@@ -16,8 +16,6 @@ export default function DefaultLocation()
 
     const[count,setCount] = useState(0);
 
-
-
     const getLocation = () => 
     {
       if (navigator.geolocation) 
@@ -32,12 +30,13 @@ export default function DefaultLocation()
           }
         }, () => 
         {
-          console.log('Unable to retrieve your location');
+          console.log("error");
         });
       }
     }
 
     const setLoc = () => {
+        
         if(url){
             axios.get(url).then((response) => 
             {
@@ -46,6 +45,9 @@ export default function DefaultLocation()
             }).catch((err) =>{
                 console.log("Some probs");
             })      
+        }
+        else{
+          console.log("error");
         }
     }
 

@@ -31,7 +31,7 @@ export default function WeatherCards()
     return( 
     <div>
         {
-        loading? <PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /> :      
+        loading?<div className='main-loading'><PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /></div>  :      
         <div>
           <UnitChange />
           <Card id={num} data={currentWeather}/>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { LocationContext } from "../../Store/location-context";
+import BounceLoader from "react-spinners/BounceLoader";
+
 
 function SearchResults(props) {
   const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
@@ -10,27 +12,27 @@ function SearchResults(props) {
     props.location;
   const [List, setList] = useState([]);
   const locationCtx = useContext(LocationContext);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     if (props.location) {
       axios
         .get(url)
         .then((response) => {
-          if(response.data.length>0)
-          {
+          if (response.data.length > 0) {
             setList((prevList) => {
-                return prevList.concat([
-                  {
-                    key: response.data[0].woeid,
-                    place: response.data[0].title,
-                  },
-                ]);
-              });
-          }
-          else
-          {
+              return prevList.concat([
+                {
+                  key: response.data[0].woeid,
+                  place: response.data[0].title,
+                },
+              ]);
+            });
+          } else {
             props.changeLocation(null);
           }
+          setLoading(false);
         })
         .catch((err) => {
           console.log("Error in API call : ", err);
@@ -44,16 +46,28 @@ function SearchResults(props) {
   }
 
   return (
-    <div className='search-results-box'>
-      <ul>
-        {List.map((loc) => {
-          return (
-            <li className='search-results-locations' key={loc.key} onClick={() => selectLocationHandler(loc.place)}>
-              {loc.place}
-            </li>
-          );
-        })}
-      </ul>
+    <div>
+        {loading ? (
+          <div className="sidebar-loading-search">
+            <BounceLoader color={"#A9A9A9"} loading={loading} size={30} />
+          </div>
+      )
+        :
+     (<div className="search-results-box">
+        <ul>
+          {List.slice(0).reverse().map((loc) => {
+            return (
+              <li
+                className="search-results-locations"
+                key={loc.key}
+                onClick={() => selectLocationHandler(loc.place)}
+              >
+                {loc.place}
+              </li>
+            );
+          })}
+        </ul>
+      </div>)}
     </div>
   );
 }

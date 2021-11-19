@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TemperatureContext } from "../../Store/temperature-context";
 
 
 export default function UnitChange()
 {
     const temperatureCtx = useContext(TemperatureContext);
-
+    const [selectedBtn, setSelectedBtn] = useState(true);
     function changeUnitC(current)
     {
+        setSelectedBtn(true);
+        console.log(selectedBtn);
         if(current!=true)
         {
             temperatureCtx.setIsCelcius();
@@ -15,6 +17,8 @@ export default function UnitChange()
     }
     function changeUnitF(current)
     {
+        setSelectedBtn(false);
+        console.log(selectedBtn);
         if(current!=false)
         {
             temperatureCtx.setIsCelcius();
@@ -22,11 +26,11 @@ export default function UnitChange()
     }
 
     return( 
-    <div>
-        <button onClick={() => changeUnitC(temperatureCtx.isCelcius)}>&#8451;</button>
-        <button onClick={() => changeUnitF(temperatureCtx.isCelcius)}>&#8457;</button>
+    <div className='cel-fah'>
+        <button onClick={() => changeUnitC(temperatureCtx.isCelcius)} className ={selectedBtn?'active':'cel-btn'} >&#8451;</button>
+         &emsp;
+        <button onClick={() => changeUnitF(temperatureCtx.isCelcius)} className ={selectedBtn?'fah-btn':'active'} >&#8457;</button>
     </div>)
 }
 
 
-  
