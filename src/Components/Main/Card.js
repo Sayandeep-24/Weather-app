@@ -66,17 +66,17 @@ export default function Card(props) {
         </div>
         {temperatureCtx.isCelcius ? (
           <div className='forecast-maxmin'>
-            {maxTemp}
-            <span>&#8451;&emsp;</span>
-            {minTemp}
-            <span>&#8451;</span>
+            
+            <span>{maxTemp}°C</span>
+            
+            <span className='min-color'>{minTemp}°C</span>
           </div>
         ) : (
           <div className='forecast-maxmin'>
-            {Fmax}
-            <span>&#8457;&emsp;</span>
-            {Fmin}
-            <span>&#8457;</span>
+            
+            <span>{Fmax}°F</span>
+            
+            <span className='min-color'>{Fmin}°F</span>
           </div>
         )}
       </div>

@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { LocationContext } from "../../Store/location-context";
 import axios from "axios";
 import Card from "./Card";
-import PulseLoader from "react-spinners/PulseLoader";
 import UnitChange  from "./UnitChange";
 
 
@@ -31,7 +30,7 @@ export default function WeatherCards()
     return( 
     <div>
         {
-        loading?<div className='main-loading'><PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /></div>  :      
+        loading?<span />  :      
         <div>
           <UnitChange />
           <div className='weather-forecast'>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../Store/location-context";
 import axios from "axios";
+import PulseLoader from "react-spinners/PulseLoader";
+
 
 export default function Highlights() {
   const locationCtx = useContext(LocationContext);
@@ -50,13 +52,12 @@ export default function Highlights() {
   return (
     <div>
       {loading ? (
-        <span />
+        <div className='main-loading'><PulseLoader color={'#A9A9A9'} loading={loading}  size={10} /></div>
       ) : (
         <div>
           <h4>Today's Highlights </h4>
           <div className="weather-highlights">
             <div className="highlights-wrap">
-              {" "}
               <div className="highlights">
                 <p>Wind Status</p>
                 <p className='highlight-value'> {windStatus} <span className='highlight-unit'>mph</span></p>
@@ -64,7 +65,6 @@ export default function Highlights() {
               </div>
             </div>
             <div className="highlights-wrap">
-              {" "}
               <div className="highlights">
                 <p>Humidity</p>
                <p className='highlight-value'>{Humidity} <span className='highlight-unit'>%</span></p> 
@@ -76,17 +76,15 @@ export default function Highlights() {
               </div>
             </div>
             <div className="highlights-wrap">
-              {" "}
               <div className="highlights">
                 <p>Visibility</p>
                <p className='highlight-value'>{Visibility} <span className='highlight-unit'>miles</span></p> 
               </div>
             </div>
             <div className="highlights-wrap">
-              {" "}
               <div className="highlights">
                 <p>Air Pressure</p>
-                <p className='highlight-value'>{AirPressure} <span className='highlight-unit'>mb</span></p>
+                <p className='highlight-value'>{AirPressure} <span className='highlight-unit'> mb</span></p>
               </div>
             </div>
           </div>
