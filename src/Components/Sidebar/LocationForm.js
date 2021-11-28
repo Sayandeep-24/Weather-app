@@ -30,11 +30,11 @@ export default function LocationForm(props) {
     <div className='side-menu'>
       <section className='search-results'>
         <span onClick={props.value} className='closing-button'><AiIcons.AiOutlineClose /></span>
-        <form onSubmit={submitHandler} className='search-form'>
+        <form onSubmit={submitHandler} className='search-form' autocomplete="off" >
           <div className='search-bar'>
           <label className='input-form'>
             <AiOutlineSearch className='search-icon' />
-            <input type="text" name="location" ref={locationRef} placeholder="search location" className='search-input'/>
+            <input type="text" name="location" ref={locationRef} placeholder="search location" autocomplete="off" className='search-input'/>
           </label>
           </div>
           <div ><input type="submit" value="Search" className='form-search-button'/></div>
