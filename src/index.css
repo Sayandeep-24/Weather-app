@@ -429,7 +429,7 @@ progress::-webkit-progress-bar {
 
 .weather-card {
   min-height: 205px;
-  margin: 14px 14px;
+  margin: 16px 16px;
   padding: 18px 22px;
   background: #1e213a;
   display: flex;
@@ -473,7 +473,7 @@ h4 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 14px;
+  margin: 16px;
   background: #1e213a;
   color: #e7e7eb;
   padding: 24px 20px;
@@ -536,7 +536,7 @@ h4 {
 }
 @media (max-width: 992px) {
   .main{
-    padding : 5px;
+    padding : 0px;
   }
   .main-loading {
     height: 1200px;
