@@ -16,4 +16,4 @@ Icon: https://google.github.io/material-design-icons/
 
 API: https://www.metaweather.com/api/
 
-Site Link : http://www.weather-app-24.netlify.app
+Site Link : https://weather-app-24.netlify.app/
