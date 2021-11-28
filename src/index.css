@@ -439,6 +439,7 @@ progress::-webkit-progress-bar {
 }
 .main-forecast-img {
   width: 60%;
+  padding-top: 16px;
 }
 .card-img {
   max-width: 100%;
