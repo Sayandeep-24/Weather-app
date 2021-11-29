@@ -349,7 +349,12 @@ progress::-webkit-progress-bar {
 }
 
 .error-main-options {
+  font-size: 1.2em;
   margin: 0;
+}
+.error-main-options:nth-of-type(1)
+{
+  padding-bottom: 10px;
 }
 
 .credit {
@@ -372,7 +377,8 @@ progress::-webkit-progress-bar {
 .main-loading {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top:300px;
+  align-items: flex-start;
   height: 100vh;
   width: 55%;
   background-color: #100e1d;
@@ -624,7 +630,7 @@ h4 {
 @media (max-width: 380px) {
   .main-loading {
     height: 1750px;
-    top: 98vh;
+    top: 96vh;
     }
 }@media (max-width: 370px) {
   .main-loading {
