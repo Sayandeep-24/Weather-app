@@ -9,7 +9,7 @@ import UnitChange  from "./UnitChange";
 export default function WeatherCards()
 {
     const locationCtx = useContext(LocationContext);
-    const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
+    const proxyCORS = "http://www.whateverorigin.org/get?url=";
     let loc_search_url =proxyCORS + "https://www.metaweather.com/api/location/search/?query=" +locationCtx.location;
     let loc_url= null;
     let num=1;

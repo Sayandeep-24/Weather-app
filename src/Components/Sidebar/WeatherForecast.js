@@ -33,7 +33,7 @@ export default function WeatherForecast() {
   let currentWeather = null;
 
   let loc_url = null;
-  const proxyCORS = "https://lit-anchorage-03290.herokuapp.com/";
+  const proxyCORS = "http://www.whateverorigin.org/get?url=";
   let loc_search_url =
     proxyCORS +
     "https://www.metaweather.com/api/location/search/?query=" +
