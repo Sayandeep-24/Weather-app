@@ -5,7 +5,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 
 function SearchResults(props) {
-  const proxyCORS = "http://www.whateverorigin.org/get?url=";
+  const proxyCORS = "https://www.whateverorigin.org/get?url=";
   let url =
     proxyCORS +
     "https://www.metaweather.com/api/location/search/?query=" +

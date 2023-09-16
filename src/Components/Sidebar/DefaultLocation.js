@@ -11,7 +11,7 @@ export default function DefaultLocation()
     const [url, setUrl] = useState();
     const locationCtx = useContext(LocationContext);
 
-    const proxyCORS = "http://www.whateverorigin.org/get?url=";
+    const proxyCORS = "https://www.whateverorigin.org/get?url=";
     let loc_search_url =proxyCORS + "https://www.metaweather.com/api/location/search/?lattlong=";
 
     const[count,setCount] = useState(0);

@@ -6,7 +6,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 export default function Highlights() {
   const locationCtx = useContext(LocationContext);
-  const proxyCORS = "http://www.whateverorigin.org/get?url=";
+  const proxyCORS = "https://www.whateverorigin.org/get?url=";
   let loc_search_url =
     proxyCORS +
     encodeURIComponent("https://www.metaweather.com/api/location/search/?query=")+
